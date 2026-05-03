@@ -3,55 +3,507 @@
   <head>
     <meta charset="utf-8">
     <title>Nipun Khanderia</title>
-    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      body {
+        font-family: 'Raleway', sans-serif;
+        background: #f5f1eb;
+        color: #2c2c2c;
+      }
+
+      /* ── HERO (first div) ── */
+      .first {
+        position: relative;
+        background: linear-gradient(160deg, #1a3a4a 0%, #2e6b7a 55%, #4da8a0 100%);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .first h1 {
+        font-family: 'Sacramento', cursive;
+        font-size: 9rem;
+        color: #fff;
+        z-index: 2;
+        position: relative;
+        text-shadow: 0 4px 24px rgba(0,0,0,0.3);
+        line-height: 1;
+      }
+
+      .firstpara {
+        font-family: 'Raleway', sans-serif;
+        font-size: 1.1rem;
+        letter-spacing: 0.45em;
+        text-transform: uppercase;
+        color: #b2dcd8;
+        z-index: 2;
+        position: relative;
+        margin-top: 0.5rem;
+      }
+
+      .location-tag {
+        font-size: 0.85rem;
+        letter-spacing: 0.3em;
+        color: #a0ccc9;
+        z-index: 2;
+        position: relative;
+        margin-top: 0.4rem;
+      }
+
+      /* SVG mountain & clouds inline */
+      .mountain-wrap {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+      }
+
+      .cloud-wrap {
+        position: absolute;
+        z-index: 2;
+        opacity: 0.75;
+      }
+      .cloud-wrap.top  { top: 10%; right: 8%; width: 160px; animation: drift 18s ease-in-out infinite alternate; }
+      .cloud-wrap.bot  { bottom: 28%; left: 6%; width: 200px; animation: drift 22s ease-in-out infinite alternate-reverse; }
+
+      @keyframes drift { from { transform: translateX(0); } to { transform: translateX(30px); } }
+
+      /* ── MIDDLE ── */
+      .middle-container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 60px 30px;
+      }
+
+      .middle-container hr {
+        border: none;
+        border-top: 1px solid #d8cfc3;
+        margin: 50px 0;
+      }
+
+      /* Profile */
+      .profile-section {
+        text-align: center;
+      }
+      .profile-section img.profile-pic {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid #2e6b7a;
+        box-shadow: 0 8px 32px rgba(46,107,122,0.2);
+        margin-bottom: 20px;
+      }
+      .profile-section h2 {
+        font-family: 'Sacramento', cursive;
+        font-size: 4.5rem;
+        color: #2e6b7a;
+        line-height: 1;
+        margin-bottom: 12px;
+      }
+      .profile-section p {
+        font-size: 0.98rem;
+        line-height: 1.8;
+        color: #555;
+        max-width: 640px;
+        margin: 0 auto;
+      }
+
+      /* Section headings */
+      .section-title {
+        font-family: 'Sacramento', cursive;
+        font-size: 3.5rem;
+        color: #2e6b7a;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      /* Competencies */
+      .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+      .skill-pill {
+        background: #e0f2f0;
+        color: #1a4e57;
+        border: 1px solid #b2dcd8;
+        border-radius: 50px;
+        padding: 6px 18px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+      }
+
+      /* Tools row */
+      .tools-row {
+        margin-top: 24px;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #555;
+        line-height: 2;
+      }
+      .tools-row strong { color: #2e6b7a; }
+
+      /* Experience */
+      .exp-block {
+        margin-bottom: 38px;
+      }
+      .exp-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 4px;
+      }
+      .exp-title {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: #1a3a4a;
+      }
+      .exp-date {
+        font-size: 0.82rem;
+        color: #888;
+        font-style: italic;
+      }
+      .exp-company {
+        font-size: 0.9rem;
+        color: #2e6b7a;
+        font-style: italic;
+        margin-bottom: 12px;
+      }
+      .exp-block ul {
+        list-style: none;
+        padding: 0;
+      }
+      .exp-block ul li {
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: #444;
+        padding-left: 18px;
+        position: relative;
+        margin-bottom: 6px;
+      }
+      .exp-block ul li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: #4da8a0;
+        font-size: 0.75rem;
+        top: 3px;
+      }
+      .exp-block p {
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: #444;
+        margin-bottom: 10px;
+      }
+
+      /* AI Highlights */
+      .highlight-block {
+        background: linear-gradient(135deg, #e8f6f5 0%, #f0faf9 100%);
+        border-left: 4px solid #4da8a0;
+        padding: 20px 24px;
+        border-radius: 0 12px 12px 0;
+        margin-bottom: 16px;
+      }
+      .highlight-block p {
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: #333;
+      }
+
+      /* Certifications */
+      .certs-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+      .cert-pill {
+        background: #fff;
+        border: 1px solid #d4e9e7;
+        border-radius: 10px;
+        padding: 10px 16px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #1a4e57;
+        box-shadow: 0 2px 8px rgba(46,107,122,0.08);
+        text-align: center;
+        max-width: 200px;
+      }
+
+      /* Contact */
+      .contact-me {
+        text-align: center;
+      }
+      .contact-me h2 {
+        font-family: 'Sacramento', cursive;
+        font-size: 3.5rem;
+        color: #2e6b7a;
+        margin-bottom: 10px;
+      }
+      .contact-me h3 {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #555;
+        margin-bottom: 8px;
+      }
+      .contact-me p {
+        font-size: 0.9rem;
+        color: #777;
+        margin-bottom: 24px;
+      }
+      .btn {
+        display: inline-block;
+        background: #2e6b7a;
+        color: #fff;
+        text-decoration: none;
+        padding: 14px 40px;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        transition: background 0.3s, transform 0.2s;
+      }
+      .btn:hover { background: #1a3a4a; transform: translateY(-2px); }
+
+      /* Footer */
+      .bottom-container {
+        background: #1a3a4a;
+        padding: 28px;
+        text-align: center;
+      }
+      .footer-link {
+        color: #b2dcd8;
+        text-decoration: none;
+        margin: 0 14px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        transition: color 0.2s;
+      }
+      .footer-link:hover { color: #fff; }
+      .bottom-container p {
+        margin-top: 12px;
+        font-size: 0.78rem;
+        color: #5a8a96;
+      }
+
+      /* Responsive */
+      @media (max-width: 600px) {
+        .first h1 { font-size: 5rem; }
+        .middle-container { padding: 40px 20px; }
+      }
+    </style>
   </head>
   <body>
+
+    <!-- ── HERO ── -->
     <div class="first">
-        <h1>I'm Nipun</h1>
-        <p class="firstpara">Software Engineer</p>
-        <img class="mount" src="images/mountain.png" alt="img-mountain">
-        <img class="cloud" src="images/cloud.png" alt="img-cloud">
-        <img class="bottomcloud" src="images/cloud.png" alt="img-cloud">
+      <h1>I'm Nipun</h1>
+      <p class="firstpara">QA Automation &amp; AI Lead</p>
+      <p class="location-tag">London, UK &nbsp;·&nbsp; TCS @ British Airways</p>
+
+      <!-- Cloud SVGs (replicate the original cloud/mountain vibe) -->
+      <svg class="cloud-wrap top" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="100" cy="50" rx="90" ry="30" fill="white" opacity="0.9"/>
+        <ellipse cx="70"  cy="38" rx="45" ry="28" fill="white" opacity="0.9"/>
+        <ellipse cx="130" cy="35" rx="38" ry="25" fill="white" opacity="0.9"/>
+      </svg>
+      <svg class="cloud-wrap bot" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="100" cy="50" rx="90" ry="30" fill="white" opacity="0.85"/>
+        <ellipse cx="65"  cy="38" rx="50" ry="28" fill="white" opacity="0.85"/>
+        <ellipse cx="140" cy="40" rx="40" ry="22" fill="white" opacity="0.85"/>
+      </svg>
+
+      <!-- Mountain SVG -->
+      <svg class="mountain-wrap" viewBox="0 0 1440 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <polygon points="0,220 300,60 480,140 700,20 900,110 1100,50 1300,100 1440,60 1440,220" fill="#0d2433" opacity="0.6"/>
+        <polygon points="0,220 200,90 400,170 620,50 820,130 1050,70 1250,120 1440,80 1440,220" fill="#0d2433" opacity="0.85"/>
+        <polygon points="0,220 0,180 250,130 500,180 750,120 1000,160 1200,130 1440,160 1440,220" fill="#f5f1eb"/>
+      </svg>
     </div>
+
+    <!-- ── MIDDLE ── -->
     <div class="middle-container">
-      <div class="profile">
-        <img height="200px" class="profile" src="images/ProfilePictureMaker.png" alt="profile">
+
+      <!-- Profile -->
+      <div class="profile-section">
         <h2>Hi.</h2>
-        <p>Space enthusiast, book worm, Author, designer, love playing with diffrent fields of science and technology, history seeker</p>
+        <p>Senior Quality Engineer specialising in Python-based automation for high-throughput data streaming platforms. Space for precision, scalability, and AI-driven thinking — making testing faster, smarter, and more human.</p>
       </div>
+
       <hr>
+
+      <!-- Skills / Competencies -->
       <div class="skills">
-        <h2>My Skills.</h2>
-        <div class="skill-row">
-          <img class="" src="" alt="">
-          <h3>Website designer</h3>
-          <p>Have built many high end websites and pursuing to do more</p>
+        <h2 class="section-title">My Skills.</h2>
+        <div class="skills-grid">
+          <span class="skill-pill">Python &amp; Kafka Ecosystems</span>
+          <span class="skill-pill">Event-Driven Architecture Testing</span>
+          <span class="skill-pill">BDD / TDD / Shift-Left Testing</span>
+          <span class="skill-pill">Workflow &amp; Integration Testing</span>
+          <span class="skill-pill">Pipeline Performance Testing</span>
+          <span class="skill-pill">Platform Performance Testing</span>
+          <span class="skill-pill">Snowflake Testing</span>
+          <span class="skill-pill">Contract Testing</span>
+          <span class="skill-pill">DR Testing</span>
+          <span class="skill-pill">Chaos Testing</span>
+          <span class="skill-pill">AI-Driven Test Automation</span>
+          <span class="skill-pill">GenAI QA Initiatives</span>
+          <span class="skill-pill">AWS (SQS, Lambda)</span>
+          <span class="skill-pill">CI/CD &amp; DevOps QA</span>
+          <span class="skill-pill">QA Strategy &amp; Leadership</span>
+          <span class="skill-pill">Amazon Q Dev / AWS Bedrock</span>
+          <span class="skill-pill">GitHub Copilot</span>
+          <span class="skill-pill">Docker &amp; Terraform</span>
+          <span class="skill-pill">Pytest &amp; Playwright</span>
+          <span class="skill-pill">Cucumber (BDD)</span>
         </div>
-        <div class="skill-row">
-          <img class="" src="" alt="">
-          <h3>Technical architect</h3>
-          <p>Designed and have been architect of many high end websites.</p>
+        <div class="tools-row">
+          <strong>Languages:</strong> Python · Java · SQL · Shell/Bash &nbsp;&nbsp;
+          <strong>Tools:</strong> JMeter · Specmatic · JIRA · Confluence · DataDog · AWS · GCP · Azure
         </div>
       </div>
+
       <hr>
+
+      <!-- Experience -->
+      <div class="experience">
+        <h2 class="section-title">Where I've Worked.</h2>
+
+        <div class="exp-block">
+          <div class="exp-header">
+            <span class="exp-title">QA Automation Lead &amp; AI Initiatives Lead</span>
+            <span class="exp-date">2023 – Present</span>
+          </div>
+          <div class="exp-company">TCS @ British Airways — London, UK</div>
+          <p>Led QA automation for a major airline's mission-critical digital transformation programme, overseeing a Python/Kafka/AWS tech stack delivering real-time operational workflows.</p>
+          <ul>
+            <li>Architected end-to-end QA automation framework using Pytest with Kafka message validation and AWS service testing (SQS, Lambda, S3)</li>
+            <li>Built performance testing frameworks using JMeter and Locust for platforms and data pipelines</li>
+            <li>Established and mentored a QA chapter of 20+ engineers with shift-left practices and BDD frameworks</li>
+            <li>Designed Kafka consumer/producer test harnesses and contract testing strategies for event-driven microservices</li>
+            <li>Built CI/CD quality gates using GitHub Actions; integrated test results into Datadog dashboards</li>
+            <li>Spearheaded AI QA initiatives — LLM-based test generation, AI-assisted defect triage, reducing test cycle time by ~30%</li>
+            <li>Championed Amazon Q Dev and GitHub Copilot adoption; created internal AI-augmented testing playbooks for 20+ engineers</li>
+          </ul>
+        </div>
+
+        <div class="exp-block">
+          <div class="exp-header">
+            <span class="exp-title">Senior QA Engineer</span>
+            <span class="exp-date">2019 – 2022</span>
+          </div>
+          <div class="exp-company">TCS @ Transport for London (TfL) — London, UK</div>
+          <p>Delivered quality engineering for TfL's internal workflow and document management platform — a high-availability system serving thousands of operational staff.</p>
+          <ul>
+            <li>Led functional, integration, regression, and performance testing for a complex Java-based workflow platform</li>
+            <li>Defined test strategy for major platform upgrades; coordinated UAT with TfL operational teams</li>
+            <li>Performed API testing using Postman/Newman; tracked defects in JIRA and documented in Confluence</li>
+            <li>Collaborated with developers and BAs on story refinement and acceptance criteria at the earliest stages</li>
+          </ul>
+        </div>
+
+        <div class="exp-block">
+          <div class="exp-header">
+            <span class="exp-title">Java Developer</span>
+            <span class="exp-date">2016 – 2019</span>
+          </div>
+          <div class="exp-company">TCS — Onecore, OSWAS &amp; LIMS</div>
+          <ul>
+            <li>Started as Java developer on LIMS (Kerala Law Secretariat) — built workflow automation and legislative document management modules</li>
+            <li>Transitioned to lead developer on OSWAS (Odisha Government) — Java Spring MVC development and DB migrations to PostgreSQL</li>
+            <li>Applied SQL query optimisation for application performance tuning</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- AI Highlights -->
+      <div class="ai-highlights">
+        <h2 class="section-title">AI &amp; Innovation.</h2>
+        <div class="highlight-block">
+          <p>Initiated and led AI-powered test generation POC at British Airways — used GPT-4 / Claude to auto-generate test cases from user stories, adopted across 3 squads.</p>
+        </div>
+        <div class="highlight-block">
+          <p>Built a defect prediction model using historical JIRA data to prioritise regression scope — presented at the internal TCS innovation forum.</p>
+        </div>
+        <div class="highlight-block">
+          <p>Created an internal GenAI literacy programme for the QA team covering prompt engineering, GitHub Copilot for test code, and AI risk in safety-critical systems.</p>
+        </div>
+        <div class="highlight-block">
+          <p>4+ years of hands-on AI/ML tools usage: AWS Bedrock, Google Vertex AI, Azure AI, GenAI APIs, and LangChain basics for Agentic AI.</p>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- Certifications -->
+      <div class="certifications">
+        <h2 class="section-title">Certifications.</h2>
+        <div class="certs-grid">
+          <div class="cert-pill">🤖 AWS Certified Generative AI Developer</div>
+          <div class="cert-pill">🔷 Azure AI Engineer – Associate</div>
+          <div class="cert-pill">🌿 Google Cloud Generative AI Leader</div>
+          <div class="cert-pill">🌐 AWS AI Practitioner</div>
+          <div class="cert-pill">🧠 AWS ML – Specialty</div>
+          <div class="cert-pill">🔷 AWS ML Engineer</div>
+          <div class="cert-pill">🔷 Azure AI Fundamentals</div>
+          <div class="cert-pill">☁ AWS Solutions Architect – Professional</div>
+          <div class="cert-pill">☁ AWS Solutions Architect – Associate</div>
+          <div class="cert-pill">☁ AWS Developer – Associate</div>
+          <div class="cert-pill">🌐 AWS Cloud Practitioner</div>
+          <div class="cert-pill">🔷 Azure Fundamentals (AZ-900)</div>
+          <div class="cert-pill">❄ Snowflake SnowPro Core</div>
+          <div class="cert-pill">🐙 GitHub Copilot Certification</div>
+          <div class="cert-pill">🐙 GitHub Actions Certification</div>
+          <div class="cert-pill">🐙 GitHub Foundations</div>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- Education -->
+      <div class="education" style="text-align:center; margin-bottom: 20px;">
+        <h2 class="section-title">Education.</h2>
+        <p style="font-size:1rem; font-weight:600; color:#1a3a4a;">M.Tech</p>
+        <p style="font-size:0.9rem; color:#555; margin-top:4px;">Nirma University, Ahmedabad, Gujarat, India</p>
+      </div>
+
+      <hr>
+
+      <!-- Contact -->
       <div class="contact-me">
         <h2>Get In Touch</h2>
-        <h3>Eiffel tower, Rajkot.</h3>
-        <p>Drop message anytime and i will get back to you.</p>
-        <a class="btn" href="mailto:name@email.com">CONTACT ME</a>
+        <h3>London, United Kingdom</h3>
+        <p>Drop a message anytime and I'll get back to you.</p>
+        <a class="btn" href="mailto:nipunkhanderi@gmail.com">CONTACT ME</a>
       </div>
+
     </div>
 
-
+    <!-- ── FOOTER ── -->
     <div class="bottom-container">
       <a class="footer-link" href="https://www.linkedin.com/">LinkedIn</a>
       <a class="footer-link" href="https://twitter.com/">Twitter</a>
-      <a class="footer-link" href="https://www.appbrewery.co/">Website</a>
-      <p>© 2021 Nipun Khanderia.</p>
+      <a class="footer-link" href="#">Website</a>
+      <p>© 2025 Nipun Khanderia.</p>
     </div>
 
   </body>
